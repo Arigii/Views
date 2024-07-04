@@ -6,9 +6,60 @@
     <title>Клиенты</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-header {
+            color: #007bff; /* Цвет заголовка такой же, как у кнопки "Принять" */
+            font-family: 'Inner', sans-serif;
+        }
+        .form-container, .table-container {
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            background-color: #f8f9fa;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-buttons {
+            text-align: right;
+        }
+        .btn-primary, .btn-secondary {
+            border-radius: 10px; /* Скругление у кнопок */
+        }
+        .btn-primary {
+            margin-left: 10px;
+        }
+        .navbar-nav .nav-item .nav-link.active {
+            color: #007bff !important; /* Цвет текста активной вкладки */
+            background-color: #e9ecef; /* Очень светло-серый цвет фона активной вкладки */
+            border-radius: 10px; /* Скругление углов */
+        }
+        .navbar-nav .nav-item .nav-link:hover {
+            color: #007bff; /* Цвет текста при наведении */
+        }
+        .navbar-nav .nav-item .nav-link {
+            margin-right: 5px;
+            color: #6c757d; /* Цвет текста неактивных вкладок */
+        }
+        .navbar-nav .nav-item .nav-link.active {
+            background-color: #e9ecef; /* Темно-серый цвет фона активной вкладки */
+            color: #007bff !important; /* Цвет текста активной вкладки */
+            border-radius: 10px; /* Скругление углов */
+        }
+        .navbar-nav .nav-item .nav-link.logout {
+            color: #000 !important; /* Черный цвет текста для вкладки "Выход" */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Тень для вкладки "Выход" */
+            border-radius: 10px; /* Скругление углов */
+        }
+        .navbar {
+            background-color: #f8f9fa; /* Цвет фона шапки */
+            border-bottom: 2px solid #6c757d; /* Подчеркивание цветом кнопки "Отмена" */
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light">
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item"><a class="nav-link" href="home.html">Главная</a></li>
@@ -22,52 +73,99 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><span class="nav-link">Логин</span></li>
-                <li class="nav-item"><a class="nav-link" href="login.html">Выход</a></li>
+                <li class="nav-item"><a class="nav-link logout" href="login.html">Выход</a></li>
             </ul>
         </div>
     </nav>
 
     <div class="container mt-4">
-        <h3>Клиенты</h3>
-        <p>Выберите поле с клиентом</p>
-        <form>
-            <div class="form-group">
-                <label for="clientName">Имя</label>
-                <input type="text" class="form-control" id="clientName" placeholder="Введите имя">
-            </div>
-            <div class="form-group">
-                <label for="clientSurname">Фамилия</label>
-                <input type="text" class="form-control" id="clientSurname" placeholder="Введите фамилию">
-            </div>
-            <div class="form-group">
-                <label for="clientPhone">Телефон</label>
-                <input type="text" class="form-control" id="clientPhone" placeholder="Введите телефон">
-            </div>
-            <div class="form-group">
-                <label for="clientEmail">Email</label>
-                <input type="email" class="form-control" id="clientEmail" placeholder="Введите email">
-            </div>
-            <button type="submit" class="btn btn-primary">Сохранить</button>
-        </form>
-        <h3 class="mt-5">Список клиентов</h3>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Имя</th>
-                    <th>Фамилия</th>
-                    <th>Телефон</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Здесь будут отображаться данные -->
-            </tbody>
-        </table>
+        <div class="form-container">
+            <h3 class="form-header">Форма заполнения клиента</h3>
+            <form id="clientForm">
+                <div class="form-group">
+                    <label for="clientSurname">Фамилия</label>
+                    <input type="text" class="form-control" id="clientSurname" placeholder="Введите фамилию" required>
+                </div>
+                <div class="form-group">
+                    <label for="clientName">Имя</label>
+                    <input type="text" class="form-control" id="clientName" placeholder="Введите имя" required>
+                </div>
+                <div class="form-group">
+                    <label for="clientPatronymic">Отчество</label>
+                    <input type="text" class="form-control" id="clientPatronymic" placeholder="Введите отчество" required>
+                </div>
+                <div class="form-group">
+                    <label for="clientPhone">Номер телефона</label>
+                    <input type="tel" class="form-control" id="clientPhone" placeholder="Введите номер телефона" required pattern="\+?[0-9\s\-\(\)]*">
+                </div>
+                <div class="form-group">
+                    <label for="clientEmail">Email</label>
+                    <input type="email" class="form-control" id="clientEmail" placeholder="Введите email" required>
+                </div>
+                <div class="form-group">
+                    <label for="clientDob">Дата рождения</label>
+                    <input type="date" class="form-control" id="clientDob" required>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                    <button type="reset" class="btn btn-secondary">Отмена</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="table-container">
+            <h3>Список клиентов</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Фамилия</th>
+                        <th>Имя</th>
+                        <th>Отчество</th>
+                        <th>Номер телефона</th>
+                        <th>Email</th>
+                        <th>Дата рождения</th>
+                    </tr>
+                </thead>
+                <tbody id="clientList">
+                    <!-- Здесь будут отображаться данные -->
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <!-- jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('clientForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Получение значений из формы
+            const clientSurname = document.getElementById('clientSurname').value;
+            const clientName = document.getElementById('clientName').value;
+            const clientPatronymic = document.getElementById('clientPatronymic').value;
+            const clientPhone = document.getElementById('clientPhone').value;
+            const clientEmail = document.getElementById('clientEmail').value;
+            const clientDob = document.getElementById('clientDob').value;
+
+            // Создание новой строки для таблицы
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${clientSurname}</td>
+                <td>${clientName}</td>
+                <td>${clientPatronymic}</td>
+                <td>${clientPhone}</td>
+                <td>${clientEmail}</td>
+                <td>${clientDob}</td>
+            `;
+
+            // Добавление новой строки в таблицу
+            document.getElementById('clientList').appendChild(newRow);
+
+            // Очистка формы после добавления записи
+            document.getElementById('clientForm').reset();
+        });
+    </script>
 </body>
 </html>
