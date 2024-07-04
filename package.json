@@ -1,0 +1,29 @@
+{
+  "name": "parking-app",
+  "description": "The parking web app",
+  "version": "1.0.0",
+  "author": "numerum",
+  "scripts": {
+    "dev": "webpack serve --mode=development",
+    "build": "webpack"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.0",
+    "jquery": "^3.6.0",
+    "popper.js": "^1.16.1",
+    "react": "18.0.0",
+    "react-bootstrap": "^2.9.0-beta.1",
+    "react-dom": "18.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.17.0",
+    "@babel/core": "7.17.0",
+    "@babel/preset-react": "7.16.0",
+    "babel-loader": "8.2.0",
+    "css-loader": "^7.1.2",
+    "style-loader": "^4.0.0",
+    "webpack": "5.70.0",
+    "webpack-cli": "4.10.0",
+    "webpack-dev-server": "4.11.0"
+  }
+}
