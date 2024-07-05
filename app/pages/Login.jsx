@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthContext.jsx'; // Adjust the path accordingly
 
 const Logins = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate();
+    const { login } = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -14,7 +18,8 @@ const Logins = () => {
                 Password: password
             });
             console.log('Login successful:', response.data);
-            // Redirect or update UI on successful login
+            login();
+            navigate('/'); // Redirect to the home page
         } catch (error) {
             console.error('Login failed:', error);
             setError('Неверный логин или пароль');

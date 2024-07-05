@@ -11,20 +11,29 @@ import Login from './pages/Login.jsx';
 import Parkings from './pages/Parkings.jsx';
 import Clients from './pages/Clients.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import PrivateRoute from './components/PrivateRoute.jsx';
+import { AuthProvider } from './AuthContext.jsx';
 
 const App = () => (
     <Router>
-        <div>
-            <Header />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/orders" element={<Orders />} />
-                <Route path="/cars" element={<Cars />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/parkings" element={<Parkings />} />
-                <Route path="/clients" element={<Clients />} />
-            </Routes>
-        </div>
+        <AuthProvider>
+            <div>
+                <Header />
+                <Routes>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/" element={
+                        <PrivateRoute>
+                            <Home />
+                        </PrivateRoute>
+                    } />
+                    <Route path="/orders" element={
+                        <PrivateRoute>
+                            <Orders />
+                        </PrivateRoute>
+                    } />
+                </Routes>
+            </div>
+        </AuthProvider>
     </Router>
 );
 
