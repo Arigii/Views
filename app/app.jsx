@@ -31,6 +31,21 @@ const App = () => (
                             <Orders />
                         </PrivateRoute>
                     } />
+                    <Route path="/cars" element={
+                        <PrivateRoute>
+                            <Cars />
+                        </PrivateRoute>
+                    } />
+                    <Route path="/parkings" element={
+                        <PrivateRoute>
+                            <Parkings />
+                        </PrivateRoute>
+                    } />
+                    <Route path="/clients" element={
+                        <PrivateRoute>
+                            <Clients />
+                        </PrivateRoute>
+                    } />
                 </Routes>
             </div>
         </AuthProvider>
