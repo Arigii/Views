@@ -18,8 +18,11 @@ const Logins = () => {
                 Password: password
             });
             console.log('Login successful:', response.data);
+
+            localStorage.setItem('user', JSON.stringify(response.data));
+
             login();
-            navigate('/'); // Redirect to the home page
+            navigate('/');
         } catch (error) {
             console.error('Login failed:', error);
             setError('Неверный логин или пароль');
@@ -36,7 +39,6 @@ const Logins = () => {
                         type="text"
                         className="form-control"
                         id="username"
-                        placeholder="Sasha"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                     />
@@ -47,7 +49,6 @@ const Logins = () => {
                         type="password"
                         className="form-control"
                         id="password"
-                        placeholder="password123"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
