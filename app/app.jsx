@@ -11,7 +11,6 @@ import Login from './pages/Login.jsx';
 import Parkings from './pages/Parkings.jsx';
 import Clients from './pages/Clients.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 const App = () => (
     <Router>
