@@ -1,4 +1,6 @@
-import React, { createContext, useContext, useState } from 'react';
+// app/AuthContext.jsx
+
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext();
 
@@ -7,7 +9,11 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(() => {
+        // Инициализируем состояние из localStorage, если оно существует
+        const savedAuth = localStorage.getItem('isAuthenticated');
+        return savedAuth === 'true';
+    });
 
     const login = () => {
         setIsAuthenticated(true);
@@ -17,9 +23,15 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated(false);
     };
 
+    // Сохраняем состояние аутентификации в localStorage при его изменении
+    useEffect(() => {
+        localStorage.setItem('isAuthenticated', isAuthenticated);
+    }, [isAuthenticated]);
+
     return (
         <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
             {children}
         </AuthContext.Provider>
     );
 };
+

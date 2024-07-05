@@ -1,4 +1,4 @@
-// app/routes.jsx
+// app/routes/routes.jsx
 
 import { Routes, Route } from 'react-router-dom';
 import PrivateRoute from '../components/PrivateRoute.jsx';

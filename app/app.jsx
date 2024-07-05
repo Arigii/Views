@@ -7,6 +7,7 @@ import Header from './components/Header.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { AuthProvider } from './AuthContext.jsx';
 import RoutesComponent from './routes/routes.jsx';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 const App = () => (
     <Router>
