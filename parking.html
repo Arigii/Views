@@ -6,12 +6,62 @@
     <title>Парковки</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-header {
+            color: #007bff; /* Цвет заголовка такой же, как у кнопки "Сохранить" */
+            font-family: 'Inner', sans-serif;
+        }
+        .form-container, .table-container {
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            background-color: #f8f9fa;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-buttons {
+            text-align: right;
+        }
+        .btn-primary, .btn-secondary {
+            border-radius: 10px; /* Скругление у кнопок */
+        }
+        .btn-primary {
+            margin-left: 10px;
+        }
+        .navbar-nav .nav-item .nav-link.active {
+            color: #007bff !important; /* Цвет текста активной вкладки */
+            background-color: #e9ecef; /* Очень светло-серый цвет фона активной вкладки */
+            border-radius: 10px; /* Скругление углов */
+        }
+        .navbar-nav .nav-item .nav-link:hover {
+            color: #007bff; /* Цвет текста при наведении */
+        }
+        .navbar-nav .nav-item .nav-link {
+            margin-right: 5px;
+            color: #6c757d; /* Цвет текста неактивных вкладок */
+        }
+        .navbar-nav .nav-item .nav-link.active {
+            background-color: #e9ecef; /* Темно-серый цвет фона активной вкладки */
+            color: #007bff !important; /* Цвет текста активной вкладки */
+            border-radius: 10px; /* Скругление углов */
+        }
+        .navbar-nav .nav-item .nav-link.logout {
+            color: #000 !important; /* Черный цвет текста для вкладки "Выход" */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Тень для вкладки "Выход" */
+            border-radius: 10px; /* Скругление углов */
+        }
+        .navbar {
+            background-color: #f8f9fa; /* Цвет фона шапки */
+            border-bottom: 2px solid #6c757d; /* Подчеркивание цветом кнопки "Отмена" */
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item"><a class="nav-link" href="home.html">Главная</a></li>
                 <li class="nav-item"><a class="nav-link" href="index.html">Заказы</a></li>
                 <li class="nav-item"><a class="nav-link" href="clients.html">Клиенты</a></li>
                 <li class="nav-item"><a class="nav-link" href="cars.html">Авто</a></li>
@@ -28,41 +78,72 @@
     </nav>
 
     <div class="container mt-4">
-        <h3>Парковки</h3>
-        <p>Выберите парковку</p>
-        <form>
-            <div class="form-group">
-                <label for="parkingLocation">Местоположение</label>
-                <input type="text" class="form-control" id="parkingLocation" placeholder="Введите местоположение">
-            </div>
-            <div class="form-group">
-                <label for="parkingCapacity">Вместимость</label>
-                <input type="number" class="form-control" id="parkingCapacity" placeholder="Введите вместимость">
-            </div>
-            <div class="form-group">
-                <label for="parkingCost">Стоимость парковки</label>
-                <input type="number" class="form-control" id="parkingCost" placeholder="Введите стоимость парковки">
-            </div>
-            <button type="submit" class="btn btn-primary">Сохранить</button>
-        </form>
-        <h3 class="mt-5">Список парковок</h3>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Местоположение</th>
-                    <th>Вместимость</th>
-                    <th>Стоимость парковки</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Здесь будут отображаться данные -->
-            </tbody>
-        </table>
+        <div class="form-container">
+            <h3 class="form-header">Форма заполнения парковки</h3>
+            <form id="parkingForm">
+                <div class="form-group">
+                    <label for="parkingLocation">Местоположение</label>
+                    <input type="text" class="form-control" id="parkingLocation" placeholder="Введите местоположение">
+                </div>
+                <div class="form-group">
+                    <label for="parkingCapacity">Вместимость</label>
+                    <input type="number" class="form-control" id="parkingCapacity" placeholder="Введите вместимость">
+                </div>
+                <div class="form-group">
+                    <label for="parkingCost">Стоимость парковки</label>
+                    <input type="number" class="form-control" id="parkingCost" placeholder="Введите стоимость парковки">
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                    <button type="reset" class="btn btn-secondary">Отмена</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="table-container">
+            <h3>Список парковок</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Местоположение</th>
+                        <th>Вместимость</th>
+                        <th>Стоимость парковки</th>
+                    </tr>
+                </thead>
+                <tbody id="parkingList">
+                    <!-- Здесь будут отображаться данные -->
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <!-- jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('parkingForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Получение значений из формы
+            const parkingLocation = document.getElementById('parkingLocation').value;
+            const parkingCapacity = document.getElementById('parkingCapacity').value;
+            const parkingCost = document.getElementById('parkingCost').value;
+
+            // Создание новой строки для таблицы
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${parkingLocation}</td>
+                <td>${parkingCapacity}</td>
+                <td>${parkingCost}</td>
+            `;
+
+            // Добавление новой строки в таблицу
+            document.getElementById('parkingList').appendChild(newRow);
+
+            // Очистка формы после добавления записи
+            document.getElementById('parkingForm').reset();
+        });
+    </script>
 </body>
 </html>

@@ -7,55 +7,95 @@
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Дополнительные стили */
-        .form-header {
-            color: #007bff; /* Цвет заголовка такой же, как у кнопки "Принять" */
-            font-family: 'Inner', sans-serif;
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
         }
-        .form-container, .table-container {
+
+        .form-header {
+            color: #007bff;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-container, .table-container, .parking-container {
             border: 1px solid #dee2e6;
             border-radius: 10px;
             padding: 20px;
             margin-top: 20px;
             background-color: #f8f9fa;
         }
+
         .form-group {
             margin-bottom: 1rem;
         }
+
         .form-buttons {
             text-align: right;
         }
+
         .btn-primary, .btn-secondary {
-            border-radius: 10px; /* Скругление у кнопок */
+            border-radius: 10px;
         }
+
         .btn-primary {
             margin-left: 10px;
         }
+
         .navbar-nav .nav-item .nav-link.active {
-            color: #007bff !important; /* Цвет текста активной вкладки */
-            background-color: #e9ecef; /* Очень светло-серый цвет фона активной вкладки */
-            border-radius: 10px; /* Скругление углов */
+            color: #007bff !important;
+            background-color: #e9ecef;
+            border-radius: 10px;
         }
+
         .navbar-nav .nav-item .nav-link:hover {
-            color: #007bff; /* Цвет текста при наведении */
+            color: #007bff;
         }
+
         .navbar-nav .nav-item .nav-link {
             margin-right: 5px;
-            color: #6c757d; /* Цвет текста неактивных вкладок */
+            color: #6c757d;
         }
-        .navbar-nav .nav-item .nav-link.active {
-            background-color: #6c757d; /* Темно-серый цвет фона активной вкладки */
-            color: #007bff !important; /* Цвет текста активной вкладки */
-            border-radius: 10px; /* Скругление углов */
-        }
+
         .navbar-nav .nav-item .nav-link.logout {
-            color: #000 !important; /* Черный цвет текста для вкладки "Выход" */
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Тень для вкладки "Выход" */
-            border-radius: 10px; /* Скругление углов */
+            color: #000 !important;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
         }
+
         .navbar {
-            background-color: #f8f9fa; /* Цвет фона шапки */
-            border-bottom: 2px solid #6c757d; /* Подчеркивание цветом кнопки "Отмена" */
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #6c757d;
+        }
+
+        .parking-lot {
+            display: grid;
+            grid-template-columns: repeat(7, 50px);
+            grid-gap: 5px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .parking-spot {
+            width: 50px;
+            height: 100px;
+            border: 1px solid black;
+            text-align: center;
+            line-height: 100px;
+            cursor: pointer;
+        }
+
+        .parking-spot.occupied {
+            background-color: red;
+        }
+
+        .parking-spot.unavailable {
+            background-color: gray;
+        }
+
+        .parking-spot.free:hover {
+            background-color: lightblue;
         }
     </style>
 </head>
@@ -63,7 +103,6 @@
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item"><a class="nav-link" href="home.html">Главная</a></li>
                 <li class="nav-item active"><a class="nav-link" href="index.html">Заказы</a></li>
                 <li class="nav-item"><a class="nav-link" href="clients.html">Клиенты</a></li>
                 <li class="nav-item"><a class="nav-link" href="cars.html">Авто</a></li>
@@ -108,6 +147,49 @@
             </form>
         </div>
 
+        <div class="parking-container">
+            <h3>Выбор парковочного места</h3>
+            <div class="parking-lot">
+                <!-- Пример заполнения парковки -->
+                <!-- Можно продолжить добавлять парковочные места -->
+                <div class="parking-spot free">1</div>
+                <div class="parking-spot occupied">2</div>
+                <div class="parking-spot unavailable">3</div>
+                <div class="parking-spot free">4</div>
+                <div class="parking-spot free">5</div>
+                <div class="parking-spot occupied">6</div>
+                <div class="parking-spot unavailable">7</div>
+                <div class="parking-spot free">8</div>
+                <div class="parking-spot free">9</div>
+                <div class="parking-spot occupied">10</div>
+                <div class="parking-spot unavailable">11</div>
+                <div class="parking-spot free">12</div>
+                <div class="parking-spot free">13</div>
+                <div class="parking-spot occupied">14</div>
+                <div class="parking-spot unavailable">15</div>
+                <div class="parking-spot free">16</div>
+                <div class="parking-spot free">17</div>
+                <div class="parking-spot occupied">18</div>
+                <div class="parking-spot unavailable">19</div>
+                <div class="parking-spot free">20</div>
+                <div class="parking-spot free">21</div>
+                <div class="parking-spot occupied">22</div>
+                <div class="parking-spot unavailable">23</div>
+                <div class="parking-spot free">24</div>
+                <div class="parking-spot free">25</div>
+                <div class="parking-spot occupied">26</div>
+                <div class="parking-spot unavailable">27</div>
+                <div class="parking-spot free">28</div>
+                <div class="parking-spot free">29</div>
+                <div class="parking-spot occupied">30</div>
+                <div class="parking-spot unavailable">31</div>
+                <div class="parking-spot free">32</div>
+                <div class="parking-spot free">33</div>
+                <div class="parking-spot occupied">34</div>
+                <div class="parking-spot unavailable">35</div>
+            </div>
+        </div>
+
         <div class="table-container">
             <h3>Список заказов</h3>
             <table class="table table-bordered">
@@ -132,32 +214,41 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         // Установка текущей даты в формате DD.MM.YYYY
-        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('ru-RU');
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('ru-RU', {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric'
+        });
 
+        // Обработчик отправки формы
         document.getElementById('orderForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
-            // Получение значений из формы
-            const carNumber = document.getElementById('carNumber').value;
-            const parkingNumber = document.getElementById('parkingNumber').value;
-            const subscriptionPeriod = document.getElementById('subscriptionPeriod').value;
-            const currentDate = document.getElementById('currentDate').textContent;
+            // Получение значений полей формы
+            var carNumber = document.getElementById('carNumber').value;
+            var parkingNumber = document.getElementById('parkingNumber').value;
+            var subscriptionPeriod = document.getElementById('subscriptionPeriod').value;
+            var currentDate = new Date().toLocaleDateString('ru-RU', {
+                day: 'numeric',
+                month: 'numeric',
+                year: 'numeric'
+            });
 
-            // Создание новой строки для таблицы
-            const newRow = document.createElement('tr');
-            newRow.innerHTML = `
-                <td>${carNumber}</td>
-                <td>${parkingNumber}</td>
-                <td>${subscriptionPeriod}</td>
-                <td>${currentDate}</td>
-            `;
+            // Создание строки для добавления в таблицу
+            var newRow = '<tr>' +
+                            '<td>' + carNumber + '</td>' +
+                            '<td>' + parkingNumber + '</td>' +
+                            '<td>' + subscriptionPeriod + '</td>' +
+                            '<td>' + currentDate + '</td>' +
+                         '</tr>';
 
-            // Добавление новой строки в таблицу
-            document.getElementById('orderList').appendChild(newRow);
+            // Добавление строки в таблицу
+            document.getElementById('orderList').insertAdjacentHTML('beforeend', newRow);
 
-            // Очистка формы после добавления записи
-            document.getElementById('orderForm').reset();
-            document.getElementById('currentDate').textContent = new Date().toLocaleDateString('ru-RU');
+            // Очистка полей формы
+            document.getElementById('carNumber').value = '';
+            document.getElementById('parkingNumber').value = '';
+            document.getElementById('subscriptionPeriod').value = '1 месяц';
         });
     </script>
 </body>
